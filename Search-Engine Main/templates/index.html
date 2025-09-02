@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sen Search</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <div class="max-w-3xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold mb-6 text-blue-700">Sen Search</h1>
+
+    <form method="get" action="/" class="flex gap-2 mb-6">
+      <input
+        type="text"
+        name="q"
+        value="{{ query }}"
+        placeholder="Search..."
+        class="flex-1 border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <button
+        class="px-5 py-3 rounded-xl bg-blue-600 text-white hover:bg-blue-700"
+      >
+        Search
+      </button>
+    </form>
+
+    {% if error %}
+      <div class="bg-red-100 text-red-800 p-3 rounded-xl mb-6">
+        {{ error }}
+      </div>
+    {% endif %}
+
+    <div class="space-y-6">
+      {% for r in results %}
+        <div class="bg-white p-5 rounded-2xl shadow hover:shadow-md transition">
+          <a href="{{ r.url }}" class="text-xl text-blue-700 hover:underline font-medium" target="_blank" rel="noopener noreferrer">
+            {{ r.title }}
+          </a>
+          <div class="text-sm text-green-700 mt-1 break-all">{{ r.url }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+</html>
+
